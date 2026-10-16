@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galeri Premium Anak SMA</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;color:#222;background:#fff}
+header{padding:18px;background:#fff;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:21px;font-weight:bold}
+button{border:0;border-radius:8px;padding:12px;background:#fe2c55;color:white;font-weight:bold;cursor:pointer}
+main{max-width:950px;margin:auto;padding:20px}
+.bio{color:#777}
+.notice{background:#fff0f3;border:2px solid #fe2c55;padding:18px;border-radius:10px;font-size:18px;font-weight:bold;text-align:center;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.item{border:1px solid #eee;border-radius:10px;overflow:hidden}
+.cover{height:200px;position:relative;background:#eee}
+.cover img{width:100%;height:100%;object-fit:cover}
+.lock{position:absolute;inset:0;background:#0004;display:grid;place-items:center;color:white;font-size:30px}
+.content{padding:12px}
+.price{font-weight:bold;margin:12px 0}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:15px;z-index:5}
+.modal.show{display:flex}
+.dialog{background:white;border-radius:14px;padding:20px;width:100%;max-width:460px;max-height:90vh;overflow:auto}
+input{display:block;width:100%;padding:13px;margin:8px 0 15px;border:1px solid #ccc;border-radius:8px;font-size:16px}
+.qris{display:block;width:100%;max-width:330px;margin:15px auto}
+.success{color:#13833b;font-weight:bold}
+@media(max-width:600px){.grid{gap:6px}.cover{height:145px}.content{padding:8px}.price{font-size:13px}.content button{width:100%}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Galeri Premium+</div>
+  <button onclick="checkout('Paket Lengkap',150000)">Gabung Premium</button>
+</header>
+
+<main>
+  <h2>Galeri Premium Anak SMA</h2>
+  <p class="bio">Koleksi foto & video eksklusif premium ✨</p>
+
+  <div class="notice">
+    ⚠️ Lakukan pembayaran dulu sebelum mengisi data nama dan nomor WhatsApp.
+  </div>
+
+  <h3>Koleksi Premium</h3>
+
+  <section class="grid">
+    <article class="item">
+      <div class="cover">
+        <img src="foto1.jpg" alt="Koleksi foto">
+        <div class="lock">🔒</div>
+      </div>
+      <div class="content">
+        <b>Koleksi Foto</b>
+        <div class="price">Rp50.000</div>
+        <button onclick="checkout('Koleksi Foto',50000)">Buka</button>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="cover">
+        <img src="foto2.jpg" alt="Koleksi video">
+        <div class="lock">🔒</div>
+      </div>
+      <div class="content">
+        <b>Koleksi Video</b>
+        <div class="price">Rp100.000</div>
+        <button onclick="checkout('Koleksi Video',100000)">Buka</button>
+      </div>
+    </article>
+
+    <article class="item">
+      <div class="cover">
+        <img src="foto3.jpg" alt="Paket lengkap">
+        <div class="lock">🔒</div>
+      </div>
+      <div class="content">
+        <b>Paket Lengkap</b>
+        <div class="price">Rp150.000</div>
+        <button onclick="checkout('Paket Lengkap',150000)">Buka</button>
+      </div>
+    </article>
+  </section>
+</main>
+
+<div class="modal" id="modal">
+  <div class="dialog">
+    <button onclick="tutup()" style="float:right">✕</button>
+    <h2>Pembayaran Premium</h2>
+    <p id="pesanan"></p>
+
+    <p><b>Scan QRIS DANA</b></p>
+    <img class="qris" src="qris-dana.jpg" alt="QRIS DANA">
+    <p style="text-align:center">
+      QRIS bisa digunakan melalui aplikasi pembayaran
+      yang mendukung QRIS.
+    </p>
+
+    <label>Nama</label>
+    <input id="nama" placeholder="Masukkan nama">
+
+    <label>Nomor WhatsApp</label>
+    <input id="wa" type="tel" placeholder="08xxxxxxxxxx">
+
+    <button onclick="kirim()" style="width:100%">Kirim Order</button>
+    <p id="hasil"></p>
+  </div>
+</div>
+
+<script>
+let produk = "";
+let harga = 0;
+
+function checkout(nama, nominal) {
+  produk = nama;
+  harga = nominal;
+  document.getElementById("pesanan").textContent =
+    nama + " — Rp" + nominal.toLocaleString("id-ID");
+  document.getElementById("hasil").textContent = "";
+  document.getElementById("modal").classList.add("show");
+}
+
+function tutup() {
+  document.getElementById("modal").classList.remove("show");
+}
+
+function kirim() {
+  const nama = document.getElementById("nama").value.trim();
+  const wa = document.getElementById("wa").value.trim();
+
+  if (!nama || !wa) {
+    alert("Isi nama dan nomor WhatsApp terlebih dahulu.");
+    return;
+  }
+
+  document.getElementById("hasil").className = "success";
+  document.getElementById("hasil").textContent =
+    "✅ Berhasil Terkirim — Order " + produk +
+    ". Pembayaran menunggu verifikasi admin.";
+}
+</script>
+
+</body>
+</html>
