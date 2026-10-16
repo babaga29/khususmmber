@@ -45,7 +45,9 @@ label{display:block;font-size:13px;font-weight:650;margin:13px 0 6px}input{width
 <label for="buyerName">Nama pemesan</label><input id="buyerName" placeholder="Nama kamu">
 <label for="buyerContact">Email atau WhatsApp</label><input id="buyerContact" placeholder="Kontak untuk konfirmasi">
 <div class="status">Pembayaran otomatis belum aktif pada demo ini. QRIS dan status transaksi harus berasal dari penyedia pembayaran, bukan dari input pelanggan.</div>
-<div class="qrbox" id="qrbox">Pasang QRIS resmi atau integrasikan payment gateway di backend.</div>
+<div class="qrbox" id="qrbox">
+  <img src="qris.png" alt="QRIS pembayaran saya">
+</div>
 <p id="paymentHelp">Setelah integrasi, backend akan membuat transaksi dan menampilkan QRIS dinamis sesuai nominal.</p>
 <button class="primary" style="width:100%" onclick="createOrder()">Buat pesanan demo</button><p id="orderResult"></p></div></div>
 <div class="modal" id="infoModal"><div class="dialog"><button class="close" onclick="document.getElementById('infoModal').classList.remove('show')">✕</button><h2>Tentang Galeri+</h2><p>Galeri digital untuk menjual konten yang dibuat sendiri atau telah mendapat izin tertulis dari pemiliknya. Jangan memuat konten seksual yang melibatkan anak di bawah umur, atau foto/video orang tanpa persetujuan yang diperlukan.</p><p>Hubungkan penyedia QRIS yang mendukung callback/webhook. Jangan pernah menyimpan PIN, password, atau kredensial DANA di website.</p></div></div>
