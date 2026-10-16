@@ -75,4 +75,12 @@ async function createOrder(){
 }
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
+</body></html>i.';
+ try{
+  const response=await fetch('/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({productName:current.name,amount:current.price,buyerName:name,buyerContact:contact})});
+  if(response.ok){const data=await response.json();document.getElementById('orderResult').textContent='Pesanan dibuat: '+data.orderId+'. Ikuti instruksi pembayaran dari penyedia pembayaran.'}
+ }catch(e){/* local HTML preview has no backend */}
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
 </body></html>
